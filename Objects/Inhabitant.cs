@@ -25,6 +25,16 @@ public abstract class Inhabitant
     {
         return this.name;
     }
+    public int getmaxHp()
+    {
+        return this.maxHp;
+    }
+
+    public int getCurrHp()
+    {
+        return this.currHp;
+    }
+   
 
 
     public Inhabitant(string name)
