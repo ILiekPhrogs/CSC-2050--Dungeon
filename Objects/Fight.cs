@@ -78,6 +78,63 @@ public class Fight
         this.defender = temp;
     }
 
+    public void powerSwing(GameObject playerGameObject, GameObject monsterGameObject)
+    {
+        int attackRoll = Random.Range(0, 20) + 1;
+        Debug.Log("Attack Roll: " + attackRoll);
+        Debug.Log("Defender AC: " + this.defender.getAC());
+        
+        if(attackRoll >= this.defender.getAC())
+        {
+            //attacker hits the defender
+            int damage = Random.Range(5,11 ); //5 to 10 damage
+            this.defender.takeDamage(damage);
+
+            if(this.defender.isDead())
+            {
+                this.fightOver = true;
+                Debug.Log(this.attacker.getName() + " killed " + this.defender.getName());
+                if(this.defender is Player)
+                {
+                    //player died
+                    Debug.Log("Player died");
+                    //end the game
+                    playerGameObject.SetActive(false); //hide the player
+                }
+                else
+                {
+                    //monster died
+                    Debug.Log("Monster died");
+                    //remove the monster from the scene
+                    GameObject.Destroy(monsterGameObject); //remove the monster from the scene
+                }
+            }
+        }
+        else
+        {
+            Debug.Log(this.attacker.getName() + " missed " + this.defender.getName());
+        }
+
+        Inhabitant temp = this.attacker;
+        this.attacker = this.defender;
+        this.defender = temp;
+    }
+
+    public void drinkPotion(GameObject playerGameObject)
+    {
+        if(Core.thePlayer.getCurrHp() > Core.thePlayer.getMaxHp())
+        {
+            int healing = Random.Range(1,15) + 1;
+            Core.thePlayer.heal(healing);
+
+             Debug.Log("Health healed: " + healing);
+             Debug.Log("Current Hp: " + Core.thePlayer.getCurrHp());
+        }
+        else
+        {
+            Debug.Log("You're already at full health!");
+        }
+    }
     public void startFight(GameObject playerGameObject, GameObject monsterGameObject)
     {
         //should have the attacker and defender fight each until one of them dies.

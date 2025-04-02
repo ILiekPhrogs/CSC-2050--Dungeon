@@ -49,7 +49,18 @@ public class fightSceneManager : MonoBehaviour
             {
                 //the attacker should visibly move
                 //this.player.transform.position -= this.attackMove;
-                this.theFight.takeASwing(this.player, this.monster);
+                if(isPlayerTurn == true)
+                {
+                    this.theFight.takeASwing(this.player, this.monster);
+                    this.theFight.drinkPotion(this.player);
+                    this.theFight.powerSwing(this.player, this.monster);
+                    isPlayerTurn == false;
+                }
+                else
+                {
+                  this.theFight.takeASwing(this.player, this.monster);
+                  isPlayerTurn == true;
+                }
             }
             else
             {

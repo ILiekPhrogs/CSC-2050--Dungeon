@@ -39,6 +39,10 @@ public abstract class Inhabitant
     {
         this.currHp -= damage;
     }
+    public void heal(int healing)
+    {
+        this.currHp += healing;
+    }
     public int getAC()
     {
         return this.ac;
