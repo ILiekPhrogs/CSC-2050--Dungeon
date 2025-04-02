@@ -80,7 +80,7 @@ public class Fight
 
     public void powerSwing(GameObject playerGameObject, GameObject monsterGameObject)
     {
-        int attackRoll = Random.Range(0, 20) + 1;
+        int attackRoll = Random.Range(0, 10) + 1;
         Debug.Log("Attack Roll: " + attackRoll);
         Debug.Log("Defender AC: " + this.defender.getAC());
         
